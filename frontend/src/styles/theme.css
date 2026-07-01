@@ -1,0 +1,83 @@
+/* ==========================================================================
+   WannaSend design tokens
+   Neubrutalist warm-paper aesthetic: cream ground, chunky ink outlines,
+   hard offset shadows, one golden + one hot-pink accent.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --bg: #f6eedb;
+  --bg-dot: rgba(27, 23, 18, 0.09);
+  --surface: #fffdf6;
+  --surface-alt: #fbf5e7;
+
+  /* Ink & text */
+  --ink: #1b1712;
+  --ink-2: rgba(27, 23, 18, 0.62);
+  --muted: #948a78;
+
+  /* Accents */
+  --yellow: #f4c01f;
+  --yellow-2: #e6ac07;
+  --yellow-ink: #1b1712;
+  --pink: #ec1857;
+  --pink-2: #cc0f48;
+  --pink-ink: #fffdf6;
+
+  /* Feedback */
+  --danger: #cc0f48;
+  --ok: #1f9d55;
+
+  /* Lines & elevation */
+  --border: #1b1712;
+  --border-w: 2.5px;
+  --shadow-color: rgba(27, 23, 18, 0.9);
+  --shadow: 3px 3px 0 var(--shadow-color);
+  --shadow-lg: 5px 5px 0 var(--shadow-color);
+  --shadow-press: 1px 1px 0 var(--shadow-color);
+
+  /* Radii */
+  --r-sm: 9px;
+  --r: 13px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  /* Type */
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
+
+  /* Layout */
+  --frame-w: 448px;
+
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #201b15;
+  --bg-dot: rgba(246, 238, 219, 0.07);
+  --surface: #2b251d;
+  --surface-alt: #332c22;
+
+  --ink: #f6eedb;
+  --ink-2: rgba(246, 238, 219, 0.66);
+  --muted: #a99f8c;
+
+  --yellow: #f4c01f;
+  --yellow-2: #d6a005;
+  --yellow-ink: #1b1712;
+  --pink: #ff2e6b;
+  --pink-2: #e01a56;
+  --pink-ink: #1b1712;
+
+  --danger: #ff5a86;
+  --ok: #46c47f;
+
+  --border: #f0e6d0;
+  --shadow-color: rgba(0, 0, 0, 0.55);
+  --shadow: 3px 3px 0 var(--shadow-color);
+  --shadow-lg: 5px 5px 0 var(--shadow-color);
+  --shadow-press: 1px 1px 0 var(--shadow-color);
+
+  color-scheme: dark;
+}

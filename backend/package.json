@@ -1,0 +1,25 @@
+{
+  "name": "wannasend-backend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "WannaSend coordination backend: PeerJS broker + presence/short-code WebSocket.",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "peer": "^1.0.2",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.0",
+    "@types/ws": "^8.5.12",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,49 @@
+# WannaSend backend stack.
+#
+# This runs the SERVER-SIDE pieces only:
+#   - coturn     STUN + TURN (last-resort media relay)
+#   - signaling  PeerJS broker (:9000) + presence/short-code WebSocket (:9001)
+#
+# The frontend is a static site — deploy it to Cloudflare Pages (see README),
+# it is NOT served from here.
+#
+# coturn needs a host with a real public IP. Set YOUR_PUBLIC_IP in
+# backend/coturn/turnserver.conf and open the relay UDP range on your firewall.
+
+services:
+  coturn:
+    image: coturn/coturn:latest
+    restart: unless-stopped
+    # Host networking is the most reliable mode for a TURN relay: it avoids
+    # Docker's NAT rewriting the relayed UDP ports. Requires a Linux host.
+    network_mode: host
+    volumes:
+      - ./backend/coturn/turnserver.conf:/etc/coturn/turnserver.conf:ro
+    command: ["-c", "/etc/coturn/turnserver.conf"]
+    # --- Alternative if you cannot use host networking -----------------------
+    # Comment out `network_mode: host` above and uncomment the ports below.
+    # The relay range MUST match min-port/max-port in turnserver.conf.
+    # ports:
+    #   - "3478:3478/udp"
+    #   - "3478:3478/tcp"
+    #   - "49160-49200:49160-49200/udp"
+
+  signaling:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "9000:9000" # PeerJS broker + /health
+      - "9001:9001" # presence / short-code WebSocket
+    environment:
+      # Enable ONLY if a trusted reverse proxy sits in front and sets
+      # X-Forwarded-For; otherwise "On this network" would group everyone
+      # behind the proxy's IP together.
+      TRUST_PROXY: "false"
+      # PORT: "9000"
+      # SIGNAL_PORT: "9001"
+      # PEER_PATH: "/peerjs"
+      # WS_PATH: "/ws"
+      # CODE_TTL_MS: "600000"
+      # ALLOW_ORIGIN: "https://your-frontend.pages.dev"
